@@ -1,0 +1,25 @@
+{
+  "name": "Casper",
+  "version": "0.0.1",
+  "description": "Manage website content remotely",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DorsayDevelopment/Casper.git"
+  },
+  "author": "Dorsay Development",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DorsayDevelopment/Casper/issues"
+  },
+  "homepage": "https://github.com/DorsayDevelopment/Casper",
+  "dependencies": {
+    "bower": "^1.3.12",
+    "express": "^4.12.2",
+    "grunt": "^0.4.5",
+    "mongoose": "^3.8.24"
+  }
+}
