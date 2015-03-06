@@ -29,5 +29,8 @@ build/Release
 node_modules
 bower_components
 
+# Public build directory
+public/*
+
 # JetBrains idea directory
 .idea/*

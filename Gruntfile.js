@@ -13,7 +13,11 @@ module.exports = function(grunt) {
           'app/components/**/*.js',
           'app/shared/**/*.js'
         ],
-        dest: 'public/app.js'
+        dest: 'public/app.min.js'
+      },
+      actions: {
+        src: 'assets/js/*.js',
+        dest: 'public/js/main.min.js'
       },
       angular: {
         src: [
@@ -21,7 +25,7 @@ module.exports = function(grunt) {
           'bower_components/angular-animate/angular-animate.js',
           'bower_components/angular-route/angular-route.js'
         ],
-        dest: 'public/angular.js'
+        dest: 'public/angular.min.js'
       }
     },
     uglify: {
@@ -29,12 +33,27 @@ module.exports = function(grunt) {
         mangle: false
       },
       app: {
-        src: 'public/app.js',
+        src: 'public/app.min.js',
         dest: 'public/app.min.js'
       },
       angular: {
-        src: 'public/angular.js',
+        src: 'public/angular.min.js',
         dest: 'public/angular.min.js'
+      },
+      actions: {
+        src: 'public/js/main.min.js',
+        dest: 'public/js/main.min.js'
+      }
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed',
+          noCache: true
+        },
+        files: {
+          'public/css/style.css': 'assets/scss/main.scss'
+        }
       }
     },
     copy: {
@@ -44,10 +63,16 @@ module.exports = function(grunt) {
             expand: true,
             src: [
               'app/components/**/*.html',
-              'app/shared/**/*.html'
+              'app/shared/**/*.html',
+              'app/index.html'
             ],
             dest: 'public/views',
-            filter: 'isFile',
+            flatten: true
+          },
+          {
+            expand: true,
+            src: 'assets/img/*',
+            dest: 'public/img/',
             flatten: true
           }
         ]
@@ -64,9 +89,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-auto-install');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'uglify', 'copy']);
+  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy']);
   grunt.registerTask('install', 'auto_install');
 
 };
