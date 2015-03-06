@@ -58,18 +58,24 @@ module.exports = function(grunt) {
     },
     copy: {
       app: {
+        options: {
+          flatten: true
+        },
         files: [
           {
             expand: true,
             src: [
               'app/components/**/*.html',
-              'app/shared/**/*.html',
-              'app/index.html'
+              'app/shared/**/*.html'
             ],
             dest: 'public/views',
             flatten: true
-          },
-          {
+          }, {
+            expand: true,
+            src: 'app/index.html',
+            dest: 'public/',
+            flatten: true
+          }, {
             expand: true,
             src: 'assets/img/*',
             dest: 'public/img/',
@@ -91,7 +97,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-auto-install');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  // Default task.
+  // Register tasks
   grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy']);
   grunt.registerTask('install', 'auto_install');
 
