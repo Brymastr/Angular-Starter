@@ -1,5 +1,5 @@
 # Angular-Starter
-Angular starter project to get you started with a good folder structure, angular dependencies, sass, and grunt tasks
+Angular-Starter is an Angular.js project template to help get you started on your own Angular project. The template provides a solid foundation for your app. Benefits include a good folder structure, several Angular dependencies, SASS, and some prebuilt grunt tasks.
 
 # Install
 To get started with the angular starter project template, fork this repository then follow these easy steps.
