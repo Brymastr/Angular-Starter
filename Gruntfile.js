@@ -58,9 +58,6 @@ module.exports = function(grunt) {
     },
     copy: {
       app: {
-        options: {
-          flatten: true
-        },
         files: [
           {
             expand: true,
@@ -84,6 +81,53 @@ module.exports = function(grunt) {
         ]
       }
     },
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        'app/*.js',
+        'app/**/*.js',
+        'assets/js/*.js'
+      ]
+    },
+    watch: {
+      options: {
+        livereload: true
+      },
+      sass: {
+        options: {
+          livereload: false
+        },
+        files: ['assets/scss/main.scss'],
+        tasks: ['sass']
+      },
+      js: {
+        files: [
+          'app/app.module.js',
+          'app/app.routes.js',
+          'app/components/**/*.js',
+          'app/shared/**/*.js'
+        ],
+        tasks: [
+          'concat:app',
+          'concat:actions',
+          'uglify:app',
+          'uglify:actions',
+          'jshint'
+        ]
+      },
+      html: {
+        files: [
+          'app/components/**/*.html',
+          'app/shared/**/*.html',
+          'app/index.html'
+        ],
+        tasks: ['copy']
+      },
+      css: {
+        files: 'public/css/style.css',
+        tasks: []
+      }
+    },
     auto_install: {
       local: {}
     }
@@ -96,6 +140,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-auto-install');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Register tasks
   grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy']);
